@@ -1,0 +1,73 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:6318390828828842877",
+      "lastPropertyId": "8:4455189333580759326",
+      "name": "VectorEntity",
+      "properties": [
+        {
+          "id": "1:4219027748054193382",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7536595315597924566",
+          "name": "filePath",
+          "type": 9,
+          "flags": 2080,
+          "indexId": "1:178835215935560641"
+        },
+        {
+          "id": "3:9048125910512626036",
+          "name": "fileName",
+          "type": 9
+        },
+        {
+          "id": "4:1357191850355994586",
+          "name": "fileType",
+          "type": 9,
+          "flags": 2048,
+          "indexId": "2:4303950733721636113"
+        },
+        {
+          "id": "5:6583030224851664435",
+          "name": "content",
+          "type": 9
+        },
+        {
+          "id": "6:1231340389765465001",
+          "name": "vector",
+          "type": 28,
+          "flags": 8,
+          "indexId": "3:944804239698216391"
+        },
+        {
+          "id": "7:6868865041641381178",
+          "name": "indexedAt",
+          "type": 6
+        },
+        {
+          "id": "8:4455189333580759326",
+          "name": "fileSize",
+          "type": 6
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "1:6318390828828842877",
+  "lastIndexId": "3:944804239698216391",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

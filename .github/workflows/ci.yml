@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  # 纯 Dart 单元测试（无需原生环境）
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate ObjectBox code
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Run unit tests
+        run: flutter test test/
+
+  # Windows 桌面集成测试（需原生 ONNX Runtime + ObjectBox）
+  integration-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate ObjectBox code
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Build Windows app
+        run: flutter build windows --debug
+
+      - name: Run integration tests
+        run: |
+          flutter test integration_test/cross_modal_search_test.dart -d windows
+          flutter test integration_test/pipeline_e2e_test.dart -d windows
+        continue-on-error: true  # 集成测试依赖大型模型文件，可能不在 CI 中可用
+
+  # 代码分析
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate ObjectBox code
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Analyze code
+        run: flutter analyze lib/
